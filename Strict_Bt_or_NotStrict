@@ -1,0 +1,53 @@
+import java.util.*;
+class BinaryTree{
+    static class Node{
+        int val;
+        Node left,right;
+        Node(int data){
+            this.val=data;
+        }
+    }
+    Node root;
+
+        boolean isStrict(Node node) {
+
+            if (node == null) return true;
+
+            if (node.left == null && node.right == null) return true;
+
+            if (node.left != null && node.right != null) {
+                return isStrict(node.left) && isStrict(node.right);
+            }
+
+            return false;
+        }
+
+        void printResult(Node node){
+            if(isStrict(node)){
+                System.out.println("Strict Node");
+            }else{
+                System.out.println("not Strict");
+            }
+        }
+
+        public static void main(String[] args) {
+            BinaryTree casea = new BinaryTree();
+            casea.root = new Node(1);
+            casea.root.left = new Node(2);
+            casea.root.right = new Node(3);
+            casea.root.left.left = new Node(4);
+            casea.root.left.right = new Node(5);
+            casea.root.right.left = new Node(6);
+            casea.root.right.right = new Node(7);
+            casea.printResult(casea.root);
+
+            BinaryTree caseb = new BinaryTree();
+            caseb.root = new Node(1);
+            caseb.root.left = new Node(2);
+            caseb.root.right = new Node(3);
+            caseb.root.left.left = new Node(4);
+            caseb.root.left.right = new Node(5);
+            caseb.root.right.left = new Node(6);
+            caseb.printResult(caseb.root);
+        }
+    }
