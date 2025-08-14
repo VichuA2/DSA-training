@@ -1,0 +1,36 @@
+import java.util.*;
+class BinaryTree{
+    static class Node{
+        int data;
+        Node left,right;
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    Node root;
+    void CreateBN(){
+    Node firstNode=new Node(1);
+    Node secondNode=new Node(2);
+    Node thirdNode=new Node(3);
+    firstNode.left=secondNode;
+    firstNode.right=thirdNode;
+    root = firstNode;
+    }
+    void printlnorder(Node node){
+        if(node==null){
+            return;
+        }
+        printlnorder(node.left);
+        System.out.print(node.data+" ");
+        printlnorder(node.right);
+    }
+    public static void main(String args[]){
+        BinaryTree bn = new BinaryTree();
+        bn.CreateBN();
+        System.out.print("Inorder Transversal ");
+        bn.printlnorder(bn.root);
+    }
+
+}
