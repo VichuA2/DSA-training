@@ -1,0 +1,43 @@
+import java.util.*;
+
+class LinkedNodeBinaryTree {
+    static class Node{
+        int data;
+        Node left,right;
+
+        public Node(int  data) {
+            this.data = data;
+        }
+    }
+    Node root;
+
+    public LinkedNodeBinaryTree() {
+        root = null;
+    }
+
+    public void buildExampleTree(){
+        root=new Node(1);
+        root.left=new Node(2);
+        root.right=new Node(3);
+        root.left.left=new Node(4);
+        root.left.right=new Node(5);
+        root.right.left=new Node(6);
+        root.right.right=new Node(7);
+    }
+    int c = Integer.MIN_VALUE;
+    void inorder(Node root) {
+        if (root != null) {
+            inorder(root.left);
+            if (c < root.data)
+                c = root.data;
+            inorder(root.right);
+        }
+        if(root==this.root) System.out.print(c);
+    }
+
+    public static void main(String[] args) {
+        LinkedNodeBinaryTree tree=new LinkedNodeBinaryTree();
+        tree.buildExampleTree();
+        tree.inorder(tree.root);
+    }
+}
