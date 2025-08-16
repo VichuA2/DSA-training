@@ -1,0 +1,40 @@
+import java.util.*;
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data=data;
+    }
+}
+class BinaryTree {
+    Node root;
+    int c = Integer.MIN_VALUE;
+
+    Node insert(Node root, int data) {
+        if (root == null) return new Node(data);
+        if (data < root.data) root.left = insert(root.left, data);
+        else root.right = insert(root.right, data);
+        return root;
+    }
+
+    int inorder(Node root) {
+        if (root != null) {
+            inorder(root.left);
+            if (c < root.data)
+                c = root.data;
+            inorder(root.right);
+        }
+        return c;
+    }
+
+}
+class maxi{
+public static void main(String[] args) {
+    BinaryTree tree = new BinaryTree();
+    int[] values = {8,5,6,8,6,9,0,5,7,9,11};
+    for (int v : values) tree.root = tree.insert(tree.root, v);
+    int d = tree.inorder(tree.root);
+    System.out.print(d);
+}}
+
