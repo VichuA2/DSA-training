@@ -1,0 +1,66 @@
+import java.util.*;
+
+class BST{
+    class Node{
+        int data;
+        Node left;
+        Node right;
+        Node(int data){
+            this.data = data;
+            left = right = null;
+        }
+    }
+    Node root;
+    
+    Node insertlevel(int data){
+        Node newNode = new Node(data);
+        
+        if(root == null){
+            root = newNode;
+            return root;
+        }
+        
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        
+        
+        while(!queue.isEmpty()){
+            Node temp = queue.poll();
+            
+            if(temp.left == null){
+                temp.left = newNode;
+                return root;
+            }
+            else{
+                queue.add(temp.left);
+            }
+            if(temp.right==null){
+                temp.right= newNode;
+                return root;
+            }
+            else{
+                queue.add(temp.right);
+            }
+        }
+        return root;
+    }
+        
+        void inorder(Node root){
+            if(root==null)return;
+            inorder(root.left);
+            System.out.print(root.data+" ");
+            inorder(root.right);
+            
+        }
+        
+        
+    public static void main(String args[]){
+        Scanner s = new Scanner(System.in);
+        BST a = new BST();
+        int arr[] = {2,3,4,5};
+        for(int i :arr){
+           a.root=a.insertlevel(i);
+        }
+        a.inorder(a.root);
+    }
+}
